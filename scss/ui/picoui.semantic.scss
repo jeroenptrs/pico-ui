@@ -1,0 +1,4 @@
+// Semantic containers enabled
+@use "../index" with (
+  $enable-semantic-container: true
+);
