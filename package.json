@@ -3,7 +3,7 @@
   "version": "1.0.0-beta",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/picocss/pico.git"
+    "url": "git+https://github.com/@jeroenpeeters/picoui.git"
   },
   "main": "css/ui/picoui.min.css",
   "publishConfig": {
