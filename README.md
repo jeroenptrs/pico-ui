@@ -10,7 +10,7 @@ A set of classes based on the semantic UI provided by [pico](https://github.com/
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@jeroenpeeters/picoui@1/css/ui/picoui.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@jeroenpeeters/picoui@next/css/ui/picoui.min.css" />
 ```
 
 ### npm
