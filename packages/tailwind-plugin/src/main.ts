@@ -1,4 +1,5 @@
 import plugin from "tailwindcss/plugin";
+import colors from "./colors";
 
 interface PicoPluginOptions {
   // TODO - FUTURE: strict option that moves omitting TW config options behind a flag
@@ -52,11 +53,7 @@ export default plugin.withOptions(
   () => {
     return {
       theme: {
-        colors: {
-          zinc: {
-            750: "#373c44",
-          },
-        },
+        colors,
         textUnderlineOffset: {
           "01": ".1rem",
         },
