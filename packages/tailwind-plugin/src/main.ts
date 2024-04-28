@@ -5,12 +5,19 @@ interface PicoPluginOptions {
   // TODO - FUTURE: strict option that moves omitting TW config options behind a flag
   // strict?: boolean;
 
-  // TODO: add $enable-semantic-container from Pico?
+  // TODO: implement asap -> default true
   // TODO: add $enable-responsive-typography from Pico?
+  // responsiveTypography: boolean; // TODO: how to reconcile with tw typography plugin - is it needed?
+
+  // TODO: default false
+  // TODO: add $enable-semantic-container from Pico?
+  // TODO: add $enable-responsive-spacings from Pico?
   layout?: Partial<{
     document: boolean;
     landmarks: boolean;
     container: boolean;
+    section: boolean;
+    // TODO: grid: boolean;
   }>;
 }
 
@@ -19,6 +26,8 @@ const defaultOptions = {
     document: true,
     landmarks: true,
     container: true,
+    section: true,
+    // TODO: grid: true,
   },
 } as PicoPluginOptions;
 
@@ -97,6 +106,14 @@ export default plugin.withOptions(
         api.addComponents({
           [".container"]: {
             [`@apply ${mappedViewports.join(" ")} ${firstBreakpoint}`]: {},
+          },
+        });
+      }
+
+      if (config?.layout?.section) {
+        api.addBase({
+          section: {
+            "@apply mb-4": {}, // TODO: #{$css-var-prefix}block-spacing-vertical in Pico. Should this be a CSS variable instead?
           },
         });
       }
