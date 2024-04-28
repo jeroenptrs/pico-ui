@@ -13,10 +13,14 @@
     "tailwindcss": ">=3.0.0 || insiders"
   },
   "devDependencies": {
+    "@types/lodash.merge": "^4.6.9",
     "@types/node": "^20.12.7",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
     "vite": "^5.2.0",
     "vite-plugin-dts": "^3.9.0"
+  },
+  "dependencies": {
+    "lodash.merge": "^4.6.2"
   }
 }

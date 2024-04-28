@@ -1,3 +1,5 @@
+import { Paths } from "./util/paths.type";
+
 export interface PicoPluginOptions {
   // TODO - FUTURE: strict option that moves omitting TW config options behind a flag
   // strict?: boolean;
@@ -16,9 +18,11 @@ export interface PicoPluginOptions {
         landmarks: boolean;
         container: boolean;
         section: boolean;
-        grid: boolean;
+        grid: boolean | "pico";
       }>;
 }
+
+export type PicoPluginOptionPaths = Exclude<Paths<PicoPluginOptions>, "layout">;
 
 export const defaultOptions = {
   layout: true,
@@ -30,5 +34,6 @@ export const futureDefaultOptions = {
     landmarks: true,
     container: true,
     section: true,
+    grid: "pico", // TODO - FUTURE: set to `false`
   },
 } as PicoPluginOptions;

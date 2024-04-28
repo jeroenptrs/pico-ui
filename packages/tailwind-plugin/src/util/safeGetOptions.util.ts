@@ -1,5 +1,4 @@
-import { PicoPluginOptions } from "../options";
-import { Paths } from "./paths.type";
+import type { PicoPluginOptions, PicoPluginOptionPaths } from "../options";
 
 type PeekValueType = {} | boolean | undefined;
 function peek(o: PeekValueType, k: string) {
@@ -19,12 +18,14 @@ function peek(o: PeekValueType, k: string) {
   return peek((o as Record<string, PeekValueType>)[left], right);
 }
 
-export function useSafeGetOptions(options: PicoPluginOptions) {
-  const safeGetOptions = (
-    key: Exclude<Paths<PicoPluginOptions>, keyof PicoPluginOptions>
-  ) => {
+export type SafeGetOption = (
+  key: PicoPluginOptionPaths
+) => string | boolean | undefined;
+
+export function useSafeGetOption(options: PicoPluginOptions) {
+  const safeGetOption = (key: PicoPluginOptionPaths) => {
     return peek(options, key);
   };
 
-  return safeGetOptions;
+  return safeGetOption as SafeGetOption;
 }
