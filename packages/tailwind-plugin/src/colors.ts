@@ -21,6 +21,7 @@ export default {
     50: "#faeeeb",
   },
   pink: {
+    // Actually way more like TWs Rose palette
     950: "#25060c",
     900: "#380916",
     850: "#4b0c1f",
@@ -41,6 +42,20 @@ export default {
     100: "#f9dbdf",
     50: "#fbedef",
   },
+  // TODO: do something with these
+  // pink: { // tailwind's pink
+  //   50: '#fdf2f8',
+  //   100: '#fce7f3',
+  //   200: '#fbcfe8',
+  //   300: '#f9a8d4',
+  //   400: '#f472b6',
+  //   500: '#ec4899',
+  //   600: '#db2777',
+  //   700: '#be185d',
+  //   800: '#9d174d',
+  //   900: '#831843',
+  //   950: '#500724',
+  // },
   fuchsia: {
     950: "#230518",
     900: "#360925",
@@ -146,7 +161,6 @@ export default {
     100: "#e0e1fa",
     50: "#f0f0fb",
   },
-  // azure -> sky?
   azure: {
     950: "#04121d",
     900: "#061e2f",
@@ -168,7 +182,12 @@ export default {
     100: "#d1e5fb",
     50: "#e9f2fc",
   },
+  get sky() {
+    // azure -> sky?
+    return this.azure;
+  },
   cyan: {
+    // aside from 50-200, this falls way more in line with TWs teal
     950: "#041413",
     900: "#051f1f",
     850: "#052b2b",
@@ -189,7 +208,23 @@ export default {
     100: "#58faf9",
     50: "#c3fcfa",
   },
-  // jade -> emerald?
+  // TODO: do something with these
+  // cyan: { // tailwind's cyan
+  //   50: "#ecfeff",
+  //   100: "#cffafe",
+  //   200: "#a5f3fc",
+  //   300: "#67e8f9",
+  //   400: "#22d3ee",
+  //   500: "#06b6d4",
+  //   600: "#0891b2",
+  //   700: "#0e7490",
+  //   800: "#155e75",
+  //   900: "#164e63",
+  //   950: "#083344",
+  // },
+  get teal() {
+    return this.cyan;
+  },
   jade: {
     950: "#04140c",
     900: "#052014",
@@ -210,6 +245,10 @@ export default {
     150: "#39f1a6",
     100: "#70fcba",
     50: "#cbfce1",
+  },
+  get emerald() {
+    // jade -> emerald?
+    return this.jade;
   },
   green: {
     950: "#0b1305",
@@ -338,7 +377,6 @@ export default {
     100: "#f9dcd2",
     50: "#faeeea",
   },
-  // sand -> stone?
   sand: {
     950: "#111110",
     900: "#1c1b19",
@@ -359,6 +397,10 @@ export default {
     150: "#dad4c2",
     100: "#e8e2d2",
     50: "#f2f0ec",
+  },
+  get stone() {
+    // sand -> stone?
+    return this.sand;
   },
   grey: {
     950: "#111111",
