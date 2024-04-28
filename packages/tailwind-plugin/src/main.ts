@@ -1,13 +1,13 @@
-import plugin from "tailwindcss/plugin";
 import merge from "lodash.merge";
+import plugin from "tailwindcss/plugin";
 
 // Input
-import { defaultOptions, type PicoPluginOptions } from "./options";
-import { useSafeGetOption } from "./util/safeGetOptions.util";
+import { defaultOptions, type PicoPluginOptions } from "@utils/options.util";
+import { useSafeGetOption } from "@utils/safeGetOptions.util";
 
 // Output
-import { layoutConfig, layoutPlugin } from "./layout";
-import { config } from "./config";
+import { layoutConfig, layoutPlugin } from "@plugins/layout.plugin";
+import { config } from "@config/main.config";
 
 // TODO - FUTURE: move away from omitting TW defaults
 export default plugin.withOptions(
@@ -23,4 +23,4 @@ export default plugin.withOptions(
   }
 );
 
-export { defaultOptions, futureDefaultOptions } from "./options";
+export { defaultOptions, futureDefaultOptions } from "./utils/options.util";

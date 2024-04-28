@@ -1,4 +1,4 @@
-import { Paths } from "./util/paths.type";
+import type { Paths } from "@utils/paths.type";
 
 export interface PicoPluginOptions {
   // TODO - FUTURE: strict option that moves omitting TW config options behind a flag
@@ -11,6 +11,11 @@ export interface PicoPluginOptions {
   // TODO: default false
   // TODO: add $enable-semantic-container from Pico?
   // TODO: add $enable-responsive-spacings from Pico?
+  themes?:
+    | boolean
+    | Partial<{
+        default: boolean;
+      }>;
   layout?:
     | boolean
     | Partial<{
@@ -25,10 +30,12 @@ export interface PicoPluginOptions {
 export type PicoPluginOptionPaths = Exclude<Paths<PicoPluginOptions>, "layout">;
 
 export const defaultOptions = {
+  themes: true,
   layout: true,
 } as PicoPluginOptions;
 
 export const futureDefaultOptions = {
+  themes: true,
   layout: {
     document: true,
     landmarks: true,

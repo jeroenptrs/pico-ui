@@ -1,6 +1,6 @@
 import { Config } from "tailwindcss";
 
-import colors from "./colors";
+import colors from "@config/colors.config";
 
 export const config = {
   theme: {

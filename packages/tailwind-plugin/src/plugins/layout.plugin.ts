@@ -1,7 +1,7 @@
-import { PluginAPI } from "tailwindcss/types/config";
+import type { Config } from "tailwindcss";
+import type { PluginAPI } from "tailwindcss/types/config";
 
-import type { SafeGetOption } from "./util/safeGetOptions.util";
-import { Config } from "tailwindcss";
+import type { SafeGetOption } from "@utils/safeGetOptions.util";
 
 export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
   if (safeGetOption("layout.document")) {

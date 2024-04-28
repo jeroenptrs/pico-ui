@@ -1,4 +1,7 @@
-import type { PicoPluginOptions, PicoPluginOptionPaths } from "../options";
+import type {
+  PicoPluginOptions,
+  PicoPluginOptionPaths,
+} from "@utils/options.util";
 
 type PeekValueType = {} | boolean | undefined;
 function peek(o: PeekValueType, k: string) {
