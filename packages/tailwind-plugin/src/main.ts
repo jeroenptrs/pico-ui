@@ -1,41 +1,15 @@
 import plugin from "tailwindcss/plugin";
+
 import colors from "./colors";
-
-interface PicoPluginOptions {
-  // TODO - FUTURE: strict option that moves omitting TW config options behind a flag
-  // strict?: boolean;
-
-  // TODO: implement asap -> default true
-  // TODO: add $enable-responsive-typography from Pico?
-  // responsiveTypography: boolean; // TODO: how to reconcile with tw typography plugin - is it needed?
-
-  // TODO: default false
-  // TODO: add $enable-semantic-container from Pico?
-  // TODO: add $enable-responsive-spacings from Pico?
-  layout?: Partial<{
-    document: boolean;
-    landmarks: boolean;
-    container: boolean;
-    section: boolean;
-    grid: boolean;
-  }>;
-}
-
-const defaultOptions = {
-  layout: {
-    document: true,
-    landmarks: true,
-    container: true,
-    section: true,
-    grid: true,
-  },
-} as PicoPluginOptions;
+import { defaultOptions, type PicoPluginOptions } from "./options";
+import { useSafeGetOptions } from "./util/safeGetOptions.util";
 
 // TODO - FUTURE: how to move away from omitting TW defaults?
 export default plugin.withOptions(
-  (config: PicoPluginOptions = defaultOptions) => {
+  (options: PicoPluginOptions = defaultOptions) => {
+    const safeGetOption = useSafeGetOptions(options);
     return function (api) {
-      if (config?.layout?.document) {
+      if (safeGetOption("layout.document")) {
         api.addBase({
           "*, *:before, *:after": {
             "box-sizing": "border-box",
@@ -67,7 +41,7 @@ export default plugin.withOptions(
         // api.addBase({});
       }
 
-      if (config?.layout?.landmarks) {
+      if (safeGetOption("layout.landmarks")) {
         api.addBase({
           body: {
             width: "100%",
@@ -84,7 +58,7 @@ export default plugin.withOptions(
         });
       }
 
-      if (config?.layout?.container) {
+      if (safeGetOption("layout.container")) {
         api.addComponents({
           [".container, .container-fluid"]: {
             "@apply w-full mx-auto": {}, // https://github.com/tailwindlabs/tailwindcss/discussions/2049#discussioncomment-39950,
@@ -110,7 +84,7 @@ export default plugin.withOptions(
         });
       }
 
-      if (config?.layout?.section) {
+      if (safeGetOption("layout.section")) {
         api.addBase({
           section: {
             "@apply mb-4": {}, // TODO: #{$css-var-prefix}block-spacing-vertical in Pico. Should this be a CSS variable instead?
@@ -118,7 +92,7 @@ export default plugin.withOptions(
         });
       }
 
-      if (config.layout?.grid) {
+      if (safeGetOption("layout.grid")) {
         api.addComponents({
           [".grid"]: {
             display: "grid",
@@ -132,7 +106,8 @@ export default plugin.withOptions(
       }
     };
   },
-  (config: PicoPluginOptions = defaultOptions) => {
+  (options: PicoPluginOptions = defaultOptions) => {
+    const safeGetOption = useSafeGetOptions(options);
     return {
       theme: {
         colors,
@@ -157,7 +132,7 @@ export default plugin.withOptions(
       },
       corePlugins: {
         preflight: false,
-        container: config.layout?.container ? false : undefined,
+        container: safeGetOption("layout.container") ? false : undefined,
       },
       experimental: {
         optimizeUniversalDefaults: true,
@@ -165,3 +140,5 @@ export default plugin.withOptions(
     };
   }
 );
+
+export { defaultOptions } from "./options";
