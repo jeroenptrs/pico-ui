@@ -54,6 +54,9 @@ export default plugin.withOptions(
     return {
       theme: {
         colors,
+        screens: {
+          sm: "576px",
+        },
         textUnderlineOffset: {
           "01": ".1rem",
         },
