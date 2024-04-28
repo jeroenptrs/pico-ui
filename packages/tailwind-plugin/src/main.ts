@@ -17,7 +17,7 @@ interface PicoPluginOptions {
     landmarks: boolean;
     container: boolean;
     section: boolean;
-    // TODO: grid: boolean;
+    grid: boolean;
   }>;
 }
 
@@ -27,7 +27,7 @@ const defaultOptions = {
     landmarks: true,
     container: true,
     section: true,
-    // TODO: grid: true,
+    grid: true,
   },
 } as PicoPluginOptions;
 
@@ -117,6 +117,19 @@ export default plugin.withOptions(
           },
         });
       }
+
+      if (config.layout?.grid) {
+        api.addComponents({
+          [".grid"]: {
+            display: "grid",
+            "@apply grid-cols-[1fr]": {},
+            "@apply gap-x-4 gap-y-4 md:grid-cols-auto": {}, // TODO: #{$css-var-prefix}block-spacing-vertical in Pico. Should this be a CSS variable instead?
+            "> *": {
+              "@apply min-w-0": {},
+            },
+          },
+        });
+      }
     };
   },
   (config: PicoPluginOptions = defaultOptions) => {
@@ -136,6 +149,9 @@ export default plugin.withOptions(
           },
           screens: {
             sm: "576px",
+          },
+          gridTemplateColumns: {
+            auto: "repeat(auto-fit, minmax(0, 1fr))",
           },
         },
       },
