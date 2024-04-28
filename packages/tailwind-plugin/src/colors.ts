@@ -1,4 +1,9 @@
 export default {
+  inherit: "inherit",
+  current: "currentColor",
+  transparent: "transparent",
+  black: "#000",
+  white: "#fff",
   red: {
     950: "#1c0d06",
     900: "#30130a",
