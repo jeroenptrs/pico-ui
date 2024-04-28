@@ -24,6 +24,9 @@ export default {
     150: "#f6cabf",
     100: "#f8dcd6",
     50: "#faeeeb",
+    get DEFAULT() {
+      return this[550];
+    },
   },
   pink: {
     // Actually way more like TWs Rose palette
@@ -46,6 +49,9 @@ export default {
     150: "#f9c8ce",
     100: "#f9dbdf",
     50: "#fbedef",
+    get DEFAULT() {
+      return this[500];
+    },
   },
   // TODO: do something with these
   // pink: { // tailwind's pink
@@ -81,6 +87,9 @@ export default {
     150: "#f9c6e1",
     100: "#f9daea",
     50: "#fbedf4",
+    get DEFAULT() {
+      return this[550];
+    },
   },
   purple: {
     950: "#1e0820",
@@ -102,6 +111,9 @@ export default {
     150: "#edc9f1",
     100: "#f2dcf4",
     50: "#f8eef9",
+    get DEFAULT() {
+      return this[600];
+    },
   },
   violet: {
     950: "#190928",
@@ -123,6 +135,9 @@ export default {
     150: "#decfed",
     100: "#e8dff2",
     50: "#f3eff7",
+    get DEFAULT() {
+      return this[600];
+    },
   },
   indigo: {
     950: "#110b31",
@@ -144,6 +159,9 @@ export default {
     150: "#d8d0f1",
     100: "#e5e0f4",
     50: "#f2f0f9",
+    get DEFAULT() {
+      return this[600];
+    },
   },
   blue: {
     950: "#080f2d",
@@ -165,6 +183,9 @@ export default {
     150: "#d0d2fa",
     100: "#e0e1fa",
     50: "#f0f0fb",
+    get DEFAULT() {
+      return this[550];
+    },
   },
   azure: {
     950: "#04121d",
@@ -186,6 +207,9 @@ export default {
     150: "#b7d9fc",
     100: "#d1e5fb",
     50: "#e9f2fc",
+    get DEFAULT() {
+      return this[550];
+    },
   },
   get sky() {
     // azure -> sky?
@@ -212,6 +236,9 @@ export default {
     150: "#3deceb",
     100: "#58faf9",
     50: "#c3fcfa",
+    get DEFAULT() {
+      return this[550];
+    },
   },
   // TODO: do something with these
   // cyan: { // tailwind's cyan
@@ -250,6 +277,9 @@ export default {
     150: "#39f1a6",
     100: "#70fcba",
     50: "#cbfce1",
+    get DEFAULT() {
+      return this[550];
+    },
   },
   get emerald() {
     // jade -> emerald?
@@ -275,6 +305,9 @@ export default {
     150: "#77ef3d",
     100: "#95fb62",
     50: "#d7fbc1",
+    get DEFAULT() {
+      return this[500];
+    },
   },
   lime: {
     950: "#101203",
@@ -296,6 +329,9 @@ export default {
     150: "#b2e51a",
     100: "#c1f335",
     50: "#defc85",
+    get DEFAULT() {
+      return this[200];
+    },
   },
   yellow: {
     950: "#141103",
@@ -317,6 +353,9 @@ export default {
     150: "#e8d600",
     100: "#f2df0d",
     50: "#fdf1b4",
+    get DEFAULT() {
+      return this[100];
+    },
   },
   amber: {
     950: "#161003",
@@ -338,6 +377,9 @@ export default {
     150: "#fecc63",
     100: "#fddea6",
     50: "#fcefd9",
+    get DEFAULT() {
+      return this[200];
+    },
   },
   // pumpkin
   pumpkin: {
@@ -360,6 +402,9 @@ export default {
     150: "#fcca9b",
     100: "#fcdcc1",
     50: "#fceee3",
+    get DEFAULT() {
+      return this[300];
+    },
   },
   orange: {
     950: "#1b0d06",
@@ -381,6 +426,9 @@ export default {
     150: "#f8cab9",
     100: "#f9dcd2",
     50: "#faeeea",
+    get DEFAULT() {
+      return this[500];
+    },
   },
   sand: {
     950: "#111110",
@@ -402,6 +450,9 @@ export default {
     150: "#dad4c2",
     100: "#e8e2d2",
     50: "#f2f0ec",
+    get DEFAULT() {
+      return this[200];
+    },
   },
   get stone() {
     // sand -> stone?
@@ -427,6 +478,9 @@ export default {
     150: "#d4d4d4",
     100: "#e2e2e2",
     50: "#f1f1f1",
+    get DEFAULT() {
+      return this[300];
+    },
   },
   get gray() {
     return this.grey;
@@ -451,6 +505,9 @@ export default {
     150: "#d1d5db",
     100: "#e0e3e7",
     50: "#f0f1f3",
+    get DEFAULT() {
+      return this[550];
+    },
   },
   slate: {
     950: "#0e1118",
@@ -472,5 +529,8 @@ export default {
     150: "#cfd5e2",
     100: "#dfe3eb",
     50: "#eff1f4",
+    get DEFAULT() {
+      return this[600];
+    },
   },
 };
