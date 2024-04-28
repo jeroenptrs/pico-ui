@@ -5,14 +5,17 @@ interface PicoPluginOptions {
   // TODO - FUTURE: strict option that moves omitting TW config options behind a flag
   // strict?: boolean;
 
+  // TODO: add $enable-semantic-container from Pico?
   layout?: Partial<{
     document: boolean;
+    landmarks: boolean;
   }>;
 }
 
 const defaultOptions = {
   layout: {
     document: true,
+    landmarks: true,
   },
 } as PicoPluginOptions;
 
@@ -47,6 +50,20 @@ export default plugin.withOptions(
             "tab-size": "4",
           },
         });
+      }
+
+      if (config?.layout?.landmarks) {
+        api.addBase({
+          body: {
+            width: "100%",
+            margin: "0",
+          },
+          main: {
+            display: "block",
+          },
+        });
+
+        // TODO: semantic-container
       }
     };
   },
