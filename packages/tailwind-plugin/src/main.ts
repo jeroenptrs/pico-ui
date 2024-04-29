@@ -23,4 +23,5 @@ export default plugin.withOptions(
   }
 );
 
-export { defaultOptions, futureDefaultOptions } from "./utils/options.util";
+export { defaultOptions, futureDefaultOptions } from "@utils/options.util";
+export { postcss as picoCssVariables } from "@utils/postcss.util";

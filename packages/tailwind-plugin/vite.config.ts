@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/main.ts"),
       formats: ["es", "cjs"],
-      fileName: (format) => `main.${format}.js`,
+      fileName: (format) => (format === "cjs" ? `main.cjs` : `main.js`),
     },
   },
 }) satisfies UserConfig;
