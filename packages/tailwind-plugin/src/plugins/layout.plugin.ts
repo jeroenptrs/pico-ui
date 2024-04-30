@@ -26,9 +26,6 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
         "font-normal font-sans text-base underline-offset-0-1" // TODO: should this be a CSS variable instead?
       ),
     });
-
-    // TODO: if responsive-typography
-    // api.addBase({});
   }
 
   if (safeGetOption("layout.landmarks")) {

@@ -8,19 +8,17 @@ import { useSafeGetOption } from "@utils/safeGetOptions.util";
 // Output
 import { layoutConfig, layoutPlugin } from "@plugins/layout.plugin";
 import { config } from "@config/main.config";
+import { themePlugin } from "@plugins/themes.plugin";
+import { compose } from "@utils/compose.util";
 
 // TODO - FUTURE: move away from omitting TW defaults
 export default plugin.withOptions(
-  (options: PicoPluginOptions = defaultOptions) => {
-    const safeGetOption = useSafeGetOption(options);
-    return function (api) {
-      layoutPlugin(api, safeGetOption);
-    };
-  },
-  (options: PicoPluginOptions = defaultOptions) => {
-    const safeGetOption = useSafeGetOption(options);
-    return merge({}, config, layoutConfig(safeGetOption));
-  }
+  (options: PicoPluginOptions = defaultOptions) =>
+    function (api) {
+      compose(themePlugin, layoutPlugin)(api, useSafeGetOption(options));
+    },
+  (options: PicoPluginOptions = defaultOptions) =>
+    merge({}, config, layoutConfig(useSafeGetOption(options)))
 );
 
 export { defaultOptions, futureDefaultOptions } from "@utils/options.util";
