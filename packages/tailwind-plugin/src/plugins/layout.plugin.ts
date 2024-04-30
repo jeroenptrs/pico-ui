@@ -78,7 +78,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
         ...apply(
           { display: "grid" },
           "grid-cols-[1fr]",
-          "gap-x-4 gap-y-4 md:grid-cols-auto" // TODO: #{$css-var-prefix}block-spacing-vertical in Pico. Should this be a CSS variable instead?
+          "gap-x-4 gap-y-4 md:grid-cols-auto" // TODO: #{$css-var-prefix}grid-column-gap in Pico. Should this be a CSS variable instead?
         ),
         "> *": apply("min-w-0"),
       },

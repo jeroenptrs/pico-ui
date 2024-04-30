@@ -6,11 +6,22 @@ export const config = {
   theme: {
     colors,
     extend: {
-      textUnderlineOffset: {
-        "0-1": ".1rem",
+      fontFamily: {
+        emoji: [
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
+      },
+      fontSize: {
+        full: "100%",
       },
       gridTemplateColumns: {
         auto: "repeat(auto-fit, minmax(0, 1fr))",
+      },
+      textUnderlineOffset: {
+        "0-1": ".1rem",
       },
     },
   },

@@ -1,4 +1,4 @@
-// import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss";
 import type { PluginAPI } from "tailwindcss/types/config";
 
 // import { apply } from "@utils/apply.util";
@@ -12,4 +12,8 @@ export function themePlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
     // TODO: if responsive-typography
     // api.addBase({});
   }
+}
+
+export function themeConfig(_safeGetOption: SafeGetOption): Partial<Config> {
+  return {};
 }

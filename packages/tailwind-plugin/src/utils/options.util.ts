@@ -29,7 +29,7 @@ export interface PicoPluginOptions {
 
 export type PicoPluginOptionPaths = Exclude<
   Paths<PicoPluginOptions>,
-  "layout" | "theme"
+  "layout" | "themes"
 >;
 
 export const defaultOptions = {
