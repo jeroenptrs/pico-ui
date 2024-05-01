@@ -21,10 +21,15 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
           "font-variation-settings": "normal",
           "text-rendering": "optimizeLegibility",
           "tab-size": "4",
+          "font-family": api.var("--tw-font-family"),
           "font-size": api.var("--tw-font-size"),
         },
-        "bg-white text-zinc-750", // TODO: dark mode // TODO: should this be a CSS variable instead?
-        "font-normal font-sans text-base underline-offset-0-1" // TODO: should this be a CSS variable instead?
+        `font-[${api.var("--tw-font-weight")}] leading-[${api.var(
+          "--tw-line-height"
+        )}] underline-offset-[${api.var("--tw-text-underline-offset")}]`,
+        `bg-[${api.var("--tw-background-color")}] text-[${api.var(
+          "--tw-color"
+        )}]` // TODO: dark mode
       ),
     });
   }
@@ -36,7 +41,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
           // TODO: if semantic-container
           "> header, > main, > footer": {
             // else !semantic-container
-            "padding-block": api.theme("spacing.4"),
+            "padding-block": api.var("--tw-block-spacing-vertical"),
           },
         },
         "w-full m-0"
@@ -49,7 +54,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
     api.addComponents({
       [".container, .container-fluid"]: apply(
         "w-full mx-auto", // https://github.com/tailwindlabs/tailwindcss/discussions/2049#discussioncomment-39950,
-        "px-4" // TODO: should this be a CSS variable instead?
+        `px-[${api.var("--tw-spacing")}]`
       ),
     });
 
@@ -71,7 +76,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
   if (safeGetOption("layout.section")) {
     api.addBase({
-      section: apply("mb-4"), // TODO: #{$css-var-prefix}block-spacing-vertical in Pico. Should this be a CSS variable instead?
+      section: apply("mb-[var(--tw-block-spacing-vertical)]"),
     });
   }
 
@@ -81,7 +86,9 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
         ...apply(
           { display: "grid" },
           "grid-cols-[1fr]",
-          "gap-x-4 gap-y-4 md:grid-cols-auto" // TODO: #{$css-var-prefix}grid-column-gap in Pico. Should this be a CSS variable instead?
+          `gap-x-[${api.var("--tw-grid-column-gap")}] gap-y-[${api.var(
+            "--tw-grid-row-gap"
+          )}] md:grid-cols-auto`
         ),
         "> *": apply("min-w-0"),
       },

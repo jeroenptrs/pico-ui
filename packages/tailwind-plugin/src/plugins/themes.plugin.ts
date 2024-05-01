@@ -8,8 +8,45 @@ export function themePlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
   if (safeGetOption("themes.default")) {
     api.addBase({
       "html, :host": {
+        // TODO: dark mode
+        "--tw-background-color": api.theme("colors.white"),
+        "--tw-color": api.theme("colors.zinc.750"),
         // Typography
+        "--tw-font-family-emoji": api.theme("fontFamily.emoji"),
+        "--tw-font-family-sans-serif": api.theme("fontFamily.sans"),
+        "--tw-font-family-monospace": api.theme("fontFamily.mono"),
+        "--tw-font-family": api.var("--tw-font-family-sans-serif"),
+        "--tw-line-height": api.theme("lineHeight.6"),
+        "--tw-font-weight": api.theme("fontWeight.normal"),
         "--tw-font-size": api.theme("fontSize.full"),
+        "--tw-text-underline-offset": api.theme("textUnderlineOffset.0-1"),
+        // Borders
+        "--tw-border-radius": api.theme("borderRadius.DEFAULT"),
+        "--tw-border-width": "0.0625rem",
+        "--tw-outline-width": "0.125rem",
+        // Transitions
+        "--tw-transition": "0.2s ease-in-out",
+        // Spacings
+        "--tw-spacing": api.theme("spacing.4"),
+        // Spacings for typography elements
+        // TODO:
+        // Spacings for body > header, body > main, body > footer, section, article
+        ...(safeGetOption("layout.landmarks") ||
+        safeGetOption(
+          "layout.section"
+        ) /* || safeGetOption("components.card") || safeGetOption("components.modal") */
+          ? {
+              "--tw-block-spacing-horizontal": api.theme("spacing.4"),
+              "--tw-block-spacing-vertical": api.theme("spacing.4"),
+            }
+          : {}),
+        ...(safeGetOption("layout.grid")
+          ? {
+              "--tw-grid-column-gap": api.var("--tw-spacing"),
+              "--tw-grid-row-gap": api.var("--tw-spacing"),
+            }
+          : {}),
+        // TODO: other components/forms/...
       },
     });
 
