@@ -4,9 +4,7 @@ export interface PicoPluginOptions {
   // TODO - FUTURE: strict option that moves omitting TW config options behind a flag
   // strict?: boolean;
 
-  // TODO: implement asap -> default true
-  // TODO: add $enable-responsive-typography from Pico?
-  // responsiveTypography: boolean; // TODO: how to reconcile with tw typography plugin - is it needed?
+  responsiveTypography: boolean; // TODO: how to reconcile with tw typography plugin - is it needed?
 
   // TODO: default false
   // TODO: add $enable-semantic-container from Pico?
@@ -33,11 +31,13 @@ export type PicoPluginOptionPaths = Exclude<
 >;
 
 export const defaultOptions = {
+  responsiveTypography: true,
   themes: true,
   layout: true,
 } as PicoPluginOptions;
 
 export const futureDefaultOptions = {
+  responsiveTypography: false,
   themes: true,
   layout: {
     document: true,

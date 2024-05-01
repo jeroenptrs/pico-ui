@@ -4,6 +4,8 @@ import plugin from "tailwindcss/plugin";
 // Input
 import { defaultOptions, type PicoPluginOptions } from "@utils/options.util";
 import { useSafeGetOption } from "@utils/safeGetOptions.util";
+// TODO - FUTURE: improve DX by option-specific config behind the same safeGet utilities (including type hints)
+// TODO - FUTURE: compose media queries (see if there's a util in tailwind to import from?)
 
 // Output
 import { layoutConfig, layoutPlugin } from "@plugins/layout.plugin";

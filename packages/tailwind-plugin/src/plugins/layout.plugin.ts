@@ -21,6 +21,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
           "font-variation-settings": "normal",
           "text-rendering": "optimizeLegibility",
           "tab-size": "4",
+          "font-size": api.var("--tw-font-size"),
         },
         "bg-white text-zinc-750", // TODO: dark mode // TODO: should this be a CSS variable instead?
         "font-normal font-sans text-base underline-offset-0-1" // TODO: should this be a CSS variable instead?
@@ -52,14 +53,16 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
       ),
     });
 
-    const viewports: Array<[string, string]> = Object.entries(
-      api.theme("viewports")
+    const breakpoints: Array<[string, string]> = Object.entries(
+      api.theme("screens")
     );
 
     const firstBreakpoint =
-      viewports.length > 0 ? `${viewports[0][0]}:px-0` : ""; // TODO: extract in generic util
+      breakpoints.length > 0 ? `${breakpoints[0][0]}:px-0` : ""; // TODO: extract in generic util
     // TODO: convert to api.addUtilities or extend tw's .container
-    const mappedViewports = viewports.map(([v, mw]) => `${v}:max-w-[${mw}]`);
+    const mappedViewports = breakpoints.map(
+      ([b]) => `${b}:max-w-[${api.theme("viewports")?.[b]}]`
+    );
 
     api.addComponents({
       [".container"]: apply(`${mappedViewports.join(" ")} ${firstBreakpoint}`),
