@@ -66,7 +66,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
       breakpoints.length > 0 ? `${breakpoints[0][0]}:px-0` : ""; // TODO: extract in generic util
     // TODO: convert to api.addUtilities or extend tw's .container
     const mappedViewports = breakpoints.map(
-      ([b]) => `${b}:max-w-[${api.theme("viewports")?.[b]}]`
+      ([b]) => `${b}:max-w-[${api.theme("container.maxWidths")?.[b]}]`
     );
 
     api.addComponents({
@@ -100,13 +100,15 @@ export function layoutConfig(safeGetOption: SafeGetOption): Partial<Config> {
   return safeGetOption("layout.container")
     ? {
         theme: {
-          viewports: {
-            sm: "510px",
-            md: "700px",
-            lg: "950px",
-            xl: "1200px",
-            "2xl": "1450px",
-          },
+          container: {
+            maxWidths: {
+              sm: "510px",
+              md: "700px",
+              lg: "950px",
+              xl: "1200px",
+              "2xl": "1450px",
+            },
+          } as Record<string, unknown>,
           extend: {
             screens: {
               sm: "576px",
