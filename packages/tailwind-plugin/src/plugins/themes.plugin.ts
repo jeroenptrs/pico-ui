@@ -3,6 +3,7 @@ import type { PluginAPI } from "tailwindcss/types/config";
 
 // import { apply } from "@utils/apply.util";
 import type { SafeGetOption } from "@utils/safeGetOptions.util";
+import { getMinWidthMediaQueries } from "@utils/getMinWidthMediaQueries.util";
 
 export function themePlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
   if (safeGetOption("themes.default")) {
@@ -52,16 +53,12 @@ export function themePlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
     // Responsive root font size
     if (safeGetOption("responsiveTypography")) {
-      const breakpoints: Array<[string, string]> = Object.entries(
-        api.theme("screens")
-      );
-
-      // TODO - FUTURE: allow for advanced screens configs to work as well, see https://tailwindcss.com/docs/screens#advanced-configuration
-      for (const [name, min] of breakpoints) {
+      const mediaQueries = getMinWidthMediaQueries(api.theme);
+      for (const [name, mq] of mediaQueries) {
         const rootFontSize = api.theme("rootFontSize")?.[name];
         if (!!rootFontSize)
           api.addBase({
-            [`@media (min-width: ${min})`]: {
+            [mq]: {
               "html, :host": {
                 "--tw-font-size": rootFontSize,
               },
