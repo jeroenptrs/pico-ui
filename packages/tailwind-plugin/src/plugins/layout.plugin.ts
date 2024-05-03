@@ -94,6 +94,11 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
       },
     });
   }
+
+  // TODO: enable-responsive-spacings
+  // if (safeGetOption("responsiveSpacings")) {
+  //   api.addBase({})
+  // }
 }
 
 export function layoutConfig(safeGetOption: SafeGetOption): Partial<Config> {
