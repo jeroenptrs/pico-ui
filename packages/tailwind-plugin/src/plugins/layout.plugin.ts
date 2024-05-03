@@ -36,16 +36,13 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
   if (safeGetOption("layout.landmarks")) {
     api.addBase({
-      body: apply.top(
-        {
-          // TODO: if semantic-container
-          "> header, > main, > footer": {
-            // else !semantic-container
-            "padding-block": api.helper("spacing"),
-          },
+      body: merge(apply("w-full m-0"), {
+        // TODO: if semantic-container
+        "> header, > main, > footer": {
+          // else !semantic-container
+          "padding-block": api.helper("spacing"),
         },
-        "w-full m-0",
-      ),
+      }),
       main: apply("block"),
     });
   }
