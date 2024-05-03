@@ -1,4 +1,3 @@
-import merge from "lodash.merge";
 import type { Config } from "tailwindcss";
 import type { PluginAPI } from "tailwindcss/types/config";
 
@@ -79,7 +78,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
       [safeGetOption("layout.grid") === "pico" ? ".pico-grid" : ".grid"]: apply(
         { display: "grid" },
         "grid-cols-[1fr]",
-        `md:grid-cols-auto`,
+        "md:grid-cols-auto",
         api.var("gap"),
         {
           "> *": apply("min-w-0"),
