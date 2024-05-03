@@ -13,7 +13,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
         "text-decoration": "inherit",
         "vertical-align": "inherit",
       },
-      "html, :host": merge(
+      "html, :host": apply(
         {
           "-webkit-tap-highlight-color": "transparent",
           "text-size-adjust": "100%",
@@ -36,7 +36,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
   if (safeGetOption("layout.landmarks")) {
     api.addBase({
-      body: merge(apply("w-full m-0"), {
+      body: apply("w-full m-0", {
         // TODO: if semantic-container
         "> header, > main, > footer": {
           // else !semantic-container
@@ -76,10 +76,11 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
   if (safeGetOption("layout.grid")) {
     api.addComponents({
-      [safeGetOption("layout.grid") === "pico" ? ".pico-grid" : ".grid"]: merge(
+      [safeGetOption("layout.grid") === "pico" ? ".pico-grid" : ".grid"]: apply(
         { display: "grid" },
+        "grid-cols-[1fr]",
+        `md:grid-cols-auto`,
         api.var("gap"),
-        apply("grid-cols-[1fr]", `md:grid-cols-auto`),
         {
           "> *": apply("min-w-0"),
         },
