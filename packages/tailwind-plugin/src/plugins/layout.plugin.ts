@@ -1,3 +1,4 @@
+import merge from "lodash.merge";
 import type { Config } from "tailwindcss";
 import type { PluginAPI } from "tailwindcss/types/config";
 
@@ -12,7 +13,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
         "text-decoration": "inherit",
         "vertical-align": "inherit",
       },
-      "html, :host": apply(
+      "html, :host": merge(
         {
           "-webkit-tap-highlight-color": "transparent",
           "text-size-adjust": "100%",
@@ -21,15 +22,14 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
           "font-variation-settings": "normal",
           "text-rendering": "optimizeLegibility",
           "tab-size": "4",
-          "font-family": api.var("--tw-font-family"),
-          "font-size": api.var("--tw-font-size"),
         },
-        `font-[${api.var("--tw-font-weight")}] leading-[${api.var(
-          "--tw-line-height"
-        )}] underline-offset-[${api.var("--tw-text-underline-offset")}]`,
-        `bg-[${api.var("--tw-background-color")}] text-[${api.var(
-          "--tw-color"
-        )}]` // TODO: dark mode
+        api.var("theme.backgroundColor"),
+        api.var("theme.color"),
+        api.var("fontWeight"),
+        api.var("fontSize"),
+        api.var("lineHeight"),
+        api.var("fontFamily"),
+        api.var("textUnderlineOffset"),
       ),
     });
   }
@@ -41,10 +41,10 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
           // TODO: if semantic-container
           "> header, > main, > footer": {
             // else !semantic-container
-            "padding-block": api.var("--tw-block-spacing-vertical"),
+            "padding-block": api.helper("spacing"),
           },
         },
-        "w-full m-0"
+        "w-full m-0",
       ),
       main: apply("block"),
     });
@@ -54,19 +54,16 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
     api.addComponents({
       [".container, .container-fluid"]: apply(
         "w-full mx-auto", // https://github.com/tailwindlabs/tailwindcss/discussions/2049#discussioncomment-39950,
-        `px-[${api.var("--tw-spacing")}]`
+        `px-[${api.helper("spacing")}]`,
       ),
     });
 
-    const breakpoints: Array<[string, string]> = Object.entries(
-      api.theme("screens")
-    );
+    const breakpoints: Array<[string, string]> = Object.entries(api.theme("screens"));
 
-    const firstBreakpoint =
-      breakpoints.length > 0 ? `${breakpoints[0][0]}:px-0` : ""; // TODO: extract in generic util
+    const firstBreakpoint = breakpoints.length > 0 ? `${breakpoints[0][0]}:px-0` : ""; // TODO: extract in generic util
     // TODO: convert to api.addUtilities or extend tw's .container
     const mappedViewports = breakpoints.map(
-      ([b]) => `${b}:max-w-[${api.theme("container.maxWidths")?.[b]}]`
+      ([b]) => `${b}:max-w-[${api.theme("container.maxWidths")?.[b]}]`,
     );
 
     api.addComponents({
@@ -76,22 +73,20 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
   if (safeGetOption("layout.section")) {
     api.addBase({
-      section: apply("mb-[var(--tw-block-spacing-vertical)]"),
+      section: apply(`mb-[${api.helper("spacing")}]`),
     });
   }
 
   if (safeGetOption("layout.grid")) {
     api.addComponents({
-      [safeGetOption("layout.grid") === "pico" ? ".pico-grid" : ".grid"]: {
-        ...apply(
-          { display: "grid" },
-          "grid-cols-[1fr]",
-          `gap-x-[${api.var("--tw-grid-column-gap")}] gap-y-[${api.var(
-            "--tw-grid-row-gap"
-          )}] md:grid-cols-auto`
-        ),
-        "> *": apply("min-w-0"),
-      },
+      [safeGetOption("layout.grid") === "pico" ? ".pico-grid" : ".grid"]: merge(
+        { display: "grid" },
+        api.var("gap"),
+        apply("grid-cols-[1fr]", `md:grid-cols-auto`),
+        {
+          "> *": apply("min-w-0"),
+        },
+      ),
     });
   }
 
