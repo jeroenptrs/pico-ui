@@ -10,25 +10,28 @@ import { useSafeGetOption } from "@utils/safeGetOptions.util";
 // Output
 import { layoutConfig, layoutPlugin } from "@plugins/layout.plugin";
 import { config } from "@config/main.config";
-import { themeConfig, themePlugin } from "@plugins/themes.plugin";
+import { typographyConfig, typographyPlugin } from "@plugins/typography.plugin";
 import { compose } from "@utils/compose.util";
-import { _var } from "@utils/var.util";
+import { createVarFn } from "@utils/var.util";
 
 // TODO - FUTURE: move away from omitting TW defaults
 export default plugin.withOptions(
-  (options: PicoPluginOptions = defaultOptions) =>
+  (options: PicoPluginOptions = {}) =>
     function (api) {
-      api.var = _var;
-      compose(themePlugin, layoutPlugin)(api, useSafeGetOption(options));
+      compose(layoutPlugin, typographyPlugin)(
+        createVarFn(api),
+        useSafeGetOption(merge({}, defaultOptions, options)),
+      );
     },
-  (options: PicoPluginOptions = defaultOptions) =>
-    merge(
+  (_options: PicoPluginOptions = {}) => {
+    const options = merge({}, defaultOptions, _options);
+    return merge(
       {},
       config,
-      themeConfig(useSafeGetOption(options)),
-      layoutConfig(useSafeGetOption(options))
-    )
+      layoutConfig(useSafeGetOption(options)),
+      typographyConfig(useSafeGetOption(options)),
+    );
+  },
 );
 
 export { defaultOptions, futureDefaultOptions } from "@utils/options.util";
-export { postcss as picoCssVariables } from "@utils/postcss.util";

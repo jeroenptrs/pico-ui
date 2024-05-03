@@ -1,10 +1,12 @@
 import { Config } from "tailwindcss";
 
 import colors from "@config/colors.config";
+import vars from "@config/vars.config";
 
 export const config = {
   theme: {
     colors,
+    vars,
     extend: {
       fontFamily: {
         emoji: [
