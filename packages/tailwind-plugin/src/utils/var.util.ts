@@ -2,7 +2,7 @@ import { CSSRuleObject, PluginAPI } from "tailwindcss/types/config";
 
 export function createVarFn(api: PluginAPI) {
   api.helper = function (name: string): string {
-    const { [name]: helper } = api.theme(`vars.helpers`); // NOTE: theme does not play nice fetching functions
+    const helper = api.theme(`vars.helpers`)?.[name]; // NOTE: theme does not play nice fetching functions
     return helper(api);
   };
 

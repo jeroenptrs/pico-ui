@@ -46,19 +46,13 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
       [".container-fluid"]: apply(`w-full mx-auto px-[${api.helper("spacing")}]`),
     });
 
-    const breakpoints: Array<[string, string]> = Object.entries(api.theme("screens"));
-
-    const firstBreakpoint = breakpoints.length > 0 ? `${breakpoints[0][0]}:px-0` : ""; // TODO: extract in generic util
-    // TODO: convert to api.addUtilities or extend tw's .container
-    const mappedViewports = breakpoints.map(
-      ([b]) => `${b}:max-w-[${api.theme("container.maxWidths")?.[b]}]`,
-    );
-
+    const breakpoints: Array<[string, string]> = Object.entries(api.theme("container.maxWidths"));
     api.addComponents({
       [".container"]: apply(
-        `w-full mx-auto px-[${api.helper("spacing")}] ${mappedViewports.join(
-          " ",
-        )} ${firstBreakpoint}`,
+        `w-full mx-auto px-[${api.helper("spacing")}]`,
+        ...breakpoints.map(([screen, maxWidth], index) => ({
+          [`@screen ${screen}`]: apply(`max-w-[${maxWidth}]`, index === 0 && "px-0"), // https://github.com/tailwindlabs/tailwindcss/issues/1102#issuecomment-525386822
+        })),
       ),
     });
   }
