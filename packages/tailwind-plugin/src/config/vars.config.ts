@@ -1,5 +1,7 @@
 import { PluginAPI } from "tailwindcss/types/config";
 
+import theme from "@config/themes.config";
+
 export const helpers = {
   spacing({ theme }: PluginAPI) {
     return theme("spacing.4") as string;
@@ -7,11 +9,6 @@ export const helpers = {
   transition(_: PluginAPI) {
     return "0.2s ease-in-out";
   },
-};
-
-export const theme = {
-  backgroundColor: "bg-white dark:bg-[#13171f]", // mix(${colorsConfig.slate[950]}, ${colorsConfig.slate[900]})
-  color: "text-zinc-750 dark:text-zinc-200",
 };
 
 // TODO: how to type this?

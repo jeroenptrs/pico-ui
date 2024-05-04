@@ -1,37 +1,40 @@
 import merge from "lodash.merge";
 import plugin from "tailwindcss/plugin";
 
-// Input
+// Utils
 import { defaultOptions, type PicoPluginOptions } from "@utils/options.util";
 import { useSafeGetOption } from "@utils/safeGetOptions.util";
+import { compose } from "@utils/compose.util";
+import { createVarUtils } from "@utils/var.util";
 // TODO - FUTURE: improve DX by option-specific config behind the same safeGet utilities (including type hints)
 // TODO - FUTURE: compose media queries (see if there's a util in tailwind to import from?)
 
 // Output
-import { layoutConfig, layoutPlugin } from "@plugins/layout.plugin";
 import { config } from "@config/main.config";
+import { layoutConfig, layoutPlugin } from "@plugins/layout.plugin";
 import { typographyConfig, typographyPlugin } from "@plugins/typography.plugin";
-import { compose } from "@utils/compose.util";
-import { createVarFn } from "@utils/var.util";
+import { linkConfig, linkPlugin } from "@plugins/link.plugin";
 
 // TODO - FUTURE: move away from omitting TW defaults
 export default plugin.withOptions(
   (options: PicoPluginOptions = {}) =>
     function (api) {
-      compose(layoutPlugin, typographyPlugin)(
-        createVarFn(api),
-        useSafeGetOption(merge({}, defaultOptions, options)),
-      );
+      compose(
+        layoutPlugin,
+        linkPlugin,
+        typographyPlugin,
+      )(createVarUtils(api), useSafeGetOption(merge({}, defaultOptions, options)));
     },
-  (_options: PicoPluginOptions = {}) => {
-    const options = merge({}, defaultOptions, _options);
+  (options: PicoPluginOptions = {}) => {
+    const configOptions = merge({}, defaultOptions, options);
     return merge(
       {},
       config,
-      layoutConfig(useSafeGetOption(options)),
-      typographyConfig(useSafeGetOption(options)),
+      layoutConfig(useSafeGetOption(configOptions)),
+      linkConfig(useSafeGetOption(configOptions)),
+      typographyConfig(useSafeGetOption(configOptions)),
     );
   },
 );
 
-export { defaultOptions, futureDefaultOptions } from "@utils/options.util";
+export { futureDefaultOptions as options } from "@utils/options.util";
