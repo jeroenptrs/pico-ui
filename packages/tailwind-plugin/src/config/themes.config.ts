@@ -50,7 +50,20 @@ export default {
     `shadow-lg shadow-[${mix(colorsConfig.black, colorsConfig.slate[950])}]/100`,
   ),
 
-  // TODO: content/typography
+  // Typography
+  markColor: themesObject("zinc-950/100", "white/100"),
+  markBackgroundColor: themesObject(
+    `[${mix(colorsConfig.amber[100], colorsConfig.amber[50])}]/100`,
+    "azure-750/100",
+  ),
+  insColor: themesObject(
+    `[${mix(colorsConfig.jade[450], colorsConfig.zinc[750])}]/100`,
+    `[${mix(colorsConfig.jade[450], colorsConfig.zinc[200])}]/100`,
+  ),
+  delColor: themesObject(
+    `[${mix(colorsConfig.red[500], colorsConfig.zinc[750])}]/100`,
+    `[${mix(colorsConfig.red[500], colorsConfig.zinc[200])}]/100`,
+  ),
 
   // TODO: the rest
 };

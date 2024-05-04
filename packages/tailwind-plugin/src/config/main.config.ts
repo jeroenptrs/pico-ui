@@ -18,6 +18,9 @@ export const config = {
       gridTemplateColumns: {
         auto: "repeat(auto-fit, minmax(0, 1fr))",
       },
+      listStyleType: {
+        square: "square",
+      },
       textUnderlineOffset: {
         "0-1": ".1rem",
       },
