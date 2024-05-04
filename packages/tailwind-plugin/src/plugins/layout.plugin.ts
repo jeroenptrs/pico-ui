@@ -46,7 +46,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
       [".container-fluid"]: apply(`w-full mx-auto px-[${api.helper("spacing")}]`),
     });
 
-    const breakpoints: Array<[string, string]> = Object.entries(api.theme("container.maxWidths"));
+    const breakpoints: Array<[string, string]> = Object.entries(api.theme("container.maxWidth"));
     api.addComponents({
       [".container"]: apply(
         `w-full mx-auto px-[${api.helper("spacing")}]`,
@@ -85,7 +85,7 @@ export function layoutConfig(safeGetOption: SafeGetOption): Partial<Config> {
     ? {
         theme: {
           container: {
-            maxWidths: {
+            maxWidth: {
               sm: "510px",
               md: "700px",
               lg: "950px",
