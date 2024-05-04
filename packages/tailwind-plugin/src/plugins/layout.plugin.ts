@@ -5,15 +5,9 @@ import { apply } from "@utils/apply.util";
 import type { SafeGetOption } from "@utils/safeGetOptions.util";
 
 export function layoutPlugin(
-  { addBase, addComponents, addUtilities, theme, pico }: PluginAPI,
+  { addBase, addComponents, theme, pico }: PluginAPI,
   safeGetOption: SafeGetOption,
 ) {
-  addUtilities({
-    ".fontsize-full": {
-      fontSize: theme("fontSize.full"),
-    },
-  });
-
   if (safeGetOption("layout.document")) {
     addBase({
       "*, *:before, *:after": apply("box-border", "bg-no-repeat"),

@@ -24,7 +24,7 @@ const vars = {
   fontFamily: "font-sans",
   lineHeight: "leading-6",
   fontWeight: "font-normal",
-  fontSize: "fontsize-full",
+  fontSize: "text-[length:theme(fontSize.full)]",
   textUnderlineOffset: "underline-offset-0-1",
   borderRadius: "rounded",
   gap: "gap-4",

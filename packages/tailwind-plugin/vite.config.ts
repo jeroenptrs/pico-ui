@@ -11,6 +11,7 @@ export default defineConfig({
         resolve(__dirname, "src/main.ts"),
         resolve(__dirname, "src/config/colors.config.ts"),
         resolve(__dirname, "src/config/themes.config.ts"),
+        resolve(__dirname, "src/config/postcss.config.ts"),
       ],
       formats: ["es", "cjs"],
       fileName: (format, name) => (format === "cjs" ? `${name}.cjs` : `${name}.js`),
