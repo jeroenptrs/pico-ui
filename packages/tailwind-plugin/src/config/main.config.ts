@@ -21,6 +21,9 @@ export const config = {
       textUnderlineOffset: {
         "0-1": ".1rem",
       },
+      spacing: {
+        "0.25": "0.0625rem",
+      },
     },
   },
   corePlugins: {

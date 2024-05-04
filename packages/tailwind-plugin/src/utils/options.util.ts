@@ -4,9 +4,15 @@ export interface PicoPluginOptions {
   // TODO - FUTURE: strict option that moves omitting TW config options behind a flag
   // strict?: boolean;
 
-  responsiveTypography?: boolean; // TODO: how to reconcile with tw typography plugin - is it needed?
+  enable?:
+    | boolean
+    | Partial<{
+        transitions: boolean;
+        semanticContainer: boolean;
+        responsiveTypography?: boolean; // TODO: how to reconcile with tw typography plugin - is it needed?
+        responsiveSpacings: boolean;
+      }>;
 
-  // TODO: default false
   // TODO: add $enable-semantic-container from Pico?
   // TODO: add $enable-responsive-spacings from Pico?
 
@@ -28,10 +34,19 @@ export interface PicoPluginOptions {
       }>;
 }
 
-export type PicoPluginOptionPaths = Exclude<Paths<PicoPluginOptions>, "layout" | "content">;
+export type PicoPluginOptionPaths = Exclude<
+  Paths<PicoPluginOptions>,
+  "enable" | "layout" | "content"
+>;
 
 export const defaultOptions = {
-  responsiveTypography: true,
+  enable: {
+    transitions: true,
+    // TODO: semanticContainer: true,
+    responsiveTypography: true,
+    // TODO: responsiveSpacings: true,
+  },
+
   layout: {
     document: true,
     landmarks: true,

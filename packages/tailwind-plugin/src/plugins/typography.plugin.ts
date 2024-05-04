@@ -19,7 +19,7 @@ export function typographyPlugin(
   }
 
   // Responsive root font size
-  if (safeGetOption("responsiveTypography")) {
+  if (safeGetOption("enable.responsiveTypography")) {
     const mediaQueries = getMinWidthMediaQueries(theme);
     for (const [name, mq] of mediaQueries) {
       const rootFontSize = theme("rootFontSize")?.[name];
@@ -27,7 +27,7 @@ export function typographyPlugin(
         addBase({
           [mq]: {
             "html, :host": {
-              "font-size": rootFontSize,
+              fontSize: rootFontSize,
             },
           },
         });
@@ -37,7 +37,7 @@ export function typographyPlugin(
 
 export function typographyConfig(safeGetOption: SafeGetOption): Partial<Config> {
   return {
-    ...(safeGetOption("responsiveTypography")
+    ...(safeGetOption("enable.responsiveTypography")
       ? {
           theme: {
             rootFontSize: {

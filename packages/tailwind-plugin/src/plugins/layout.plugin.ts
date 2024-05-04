@@ -5,25 +5,31 @@ import { apply } from "@utils/apply.util";
 import type { SafeGetOption } from "@utils/safeGetOptions.util";
 
 export function layoutPlugin(
-  { addBase, addComponents, theme, pico }: PluginAPI,
+  { addBase, addComponents, addUtilities, theme, pico }: PluginAPI,
   safeGetOption: SafeGetOption,
 ) {
+  addUtilities({
+    ".fontsize-full": {
+      fontSize: theme("fontSize.full"),
+    },
+  });
+
   if (safeGetOption("layout.document")) {
     addBase({
       "*, *:before, *:after": apply("box-border", "bg-no-repeat"),
       ":before, :after": {
-        "text-decoration": "inherit",
-        "vertical-align": "inherit",
+        textDecoration: "inherit",
+        verticalAlign: "inherit",
       },
       "html, :host": apply(
         {
           "-webkit-tap-highlight-color": "transparent",
-          "text-size-adjust": "100%",
-          "overflow-wrap": "break-word",
-          "font-feature-settings": "normal",
-          "font-variation-settings": "normal",
-          "text-rendering": "optimizeLegibility",
-          "tab-size": "4",
+          textSizeAdjust: "100%",
+          overflowWrap: "break-word",
+          fontFeatureSettings: "normal",
+          fontVariationSettings: "normal",
+          textRendering: "optimizeLegibility",
+          tabSize: "4",
         },
         ...pico.vars("fontWeight", "fontSize", "lineHeight", "fontFamily", "textUnderlineOffset"),
         pico.theme("bg", "backgroundColor"),
@@ -38,7 +44,7 @@ export function layoutPlugin(
         // TODO: if semantic-container
         "> header, > main, > footer": {
           // else !semantic-container
-          "padding-block": pico.helper("spacing"),
+          paddingBlock: pico.helper("spacing"),
         },
       }),
       main: apply("block"),

@@ -6,6 +6,12 @@ export const helpers = {
   spacing({ theme }: PluginAPI) {
     return theme("spacing.4") as string;
   },
+  borderWidth({ theme }: PluginAPI) {
+    return theme("spacing.0.25") as string;
+  },
+  outlineWidth({ theme }: PluginAPI) {
+    return theme("spacing.0.5") as string;
+  },
   transition(_: PluginAPI) {
     return "0.2s ease-in-out";
   },
@@ -18,15 +24,9 @@ const vars = {
   fontFamily: "font-sans",
   lineHeight: "leading-6",
   fontWeight: "font-normal",
-  fontSize: { fontSize: "100%" },
+  fontSize: "fontsize-full",
   textUnderlineOffset: "underline-offset-0-1",
   borderRadius: "rounded",
-  borderWidth: {
-    "border-width": "0.0625rem",
-  },
-  outlineWidth: {
-    "outline-width": "0.125rem",
-  },
   gap: "gap-4",
 };
 
