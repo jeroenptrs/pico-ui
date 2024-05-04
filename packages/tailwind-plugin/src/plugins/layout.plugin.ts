@@ -1,4 +1,3 @@
-import merge from "lodash.merge";
 import type { Config } from "tailwindcss";
 import type { PluginAPI } from "tailwindcss/types/config";
 
@@ -13,7 +12,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
         "text-decoration": "inherit",
         "vertical-align": "inherit",
       },
-      "html, :host": merge(
+      "html, :host": apply(
         {
           "-webkit-tap-highlight-color": "transparent",
           "text-size-adjust": "100%",
@@ -23,39 +22,28 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
           "text-rendering": "optimizeLegibility",
           "tab-size": "4",
         },
-        api.var("theme.backgroundColor"),
-        api.var("theme.color"),
-        api.var("fontWeight"),
-        api.var("fontSize"),
-        api.var("lineHeight"),
-        api.var("fontFamily"),
-        api.var("textUnderlineOffset"),
+        ...api.vars("theme.backgroundColor", "theme.color"),
+        ...api.vars("fontWeight", "fontSize", "lineHeight", "fontFamily", "textUnderlineOffset"),
       ),
     });
   }
 
   if (safeGetOption("layout.landmarks")) {
     api.addBase({
-      body: apply.top(
-        {
-          // TODO: if semantic-container
-          "> header, > main, > footer": {
-            // else !semantic-container
-            "padding-block": api.helper("spacing"),
-          },
+      body: apply("w-full m-0", {
+        // TODO: if semantic-container
+        "> header, > main, > footer": {
+          // else !semantic-container
+          "padding-block": api.helper("spacing"),
         },
-        "w-full m-0",
-      ),
+      }),
       main: apply("block"),
     });
   }
 
   if (safeGetOption("layout.container")) {
     api.addComponents({
-      [".container, .container-fluid"]: apply(
-        "w-full mx-auto", // https://github.com/tailwindlabs/tailwindcss/discussions/2049#discussioncomment-39950,
-        `px-[${api.helper("spacing")}]`,
-      ),
+      [".container, .container-fluid"]: apply(`w-full mx-auto px-[${api.helper("spacing")}]`),
     });
 
     const breakpoints: Array<[string, string]> = Object.entries(api.theme("screens"));
@@ -79,13 +67,11 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
   if (safeGetOption("layout.grid")) {
     api.addComponents({
-      [safeGetOption("layout.grid") === "pico" ? ".pico-grid" : ".grid"]: merge(
+      [safeGetOption("layout.grid") === "pico" ? ".pico-grid" : ".grid"]: apply(
         { display: "grid" },
         api.var("gap"),
-        apply("grid-cols-[1fr]", `md:grid-cols-auto`),
-        {
-          "> *": apply("min-w-0"),
-        },
+        "grid-cols-[1fr] md:grid-cols-auto",
+        { "> *": apply("min-w-0") },
       ),
     });
   }

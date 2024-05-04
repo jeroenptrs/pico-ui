@@ -1,28 +1,31 @@
+import merge from "lodash.merge";
 import type { CSSRuleObject } from "tailwindcss/types/config";
 import { twMerge, type ClassNameValue } from "tailwind-merge";
 
-export function apply(
-  stylesOrClass: CSSRuleObject | ClassNameValue,
-  ...classes: ClassNameValue[]
-): CSSRuleObject {
-  const styles = typeof stylesOrClass === "string" ? {} : stylesOrClass;
-  const firstClass = typeof stylesOrClass === "string" ? stylesOrClass : "";
+export function apply(...classes: Array<CSSRuleObject | ClassNameValue>): CSSRuleObject {
+  const appliedObjectsArray: Array<CSSRuleObject> = [];
+  let appliedStringsArray: Array<string> = [];
 
-  return {
-    ...styles,
-    [`@apply ${twMerge(firstClass, ...(classes ?? []))}`]: {},
-  } as CSSRuleObject;
+  function attachStringsArray() {
+    if (appliedStringsArray.length > 0) {
+      appliedObjectsArray.push({
+        [`@apply ${twMerge(...appliedStringsArray)}`]: {},
+      });
+
+      appliedStringsArray = [];
+    }
+  }
+
+  for (const stylesOrClass of classes) {
+    if (typeof stylesOrClass === "string") {
+      appliedStringsArray.push(stylesOrClass);
+    } else {
+      attachStringsArray();
+      appliedObjectsArray.push(stylesOrClass as CSSRuleObject);
+    }
+  }
+
+  attachStringsArray();
+
+  return merge({}, ...appliedObjectsArray);
 }
-
-apply.top = function (
-  stylesOrClass: CSSRuleObject | ClassNameValue,
-  ...classes: ClassNameValue[]
-): CSSRuleObject {
-  const styles = typeof stylesOrClass === "string" ? {} : stylesOrClass;
-  const firstClass = typeof stylesOrClass === "string" ? stylesOrClass : "";
-
-  return {
-    [`@apply ${twMerge(firstClass, ...(classes ?? []))}`]: {},
-    ...styles,
-  } as CSSRuleObject;
-};
