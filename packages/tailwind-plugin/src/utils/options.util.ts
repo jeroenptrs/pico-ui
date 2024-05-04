@@ -17,7 +17,7 @@ export interface PicoPluginOptions {
         landmarks: boolean;
         container: boolean;
         section: boolean;
-        grid: boolean | "pico";
+        grid: boolean;
       }>;
 
   content?:
@@ -32,18 +32,20 @@ export type PicoPluginOptionPaths = Exclude<Paths<PicoPluginOptions>, "layout" |
 
 export const defaultOptions = {
   responsiveTypography: true,
-  layout: true,
+  layout: {
+    document: true,
+    landmarks: true,
+    container: true,
+    section: true,
+    grid: true,
+  },
   content: true,
 } as PicoPluginOptions;
 
 export const futureDefaultOptions = {
   responsiveTypography: false,
   layout: {
-    document: true,
-    landmarks: true,
-    container: true,
-    section: true,
-    grid: "pico", // TODO - FUTURE: set to `false`
+    grid: false,
   },
   content: true,
 } as PicoPluginOptions;

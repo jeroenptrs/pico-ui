@@ -65,12 +65,9 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
   if (safeGetOption("layout.grid")) {
     api.addComponents({
-      [safeGetOption("layout.grid") === "pico" ? ".pico-grid" : ".grid"]: apply(
-        { display: "grid" },
-        api.var("gap"),
-        "grid-cols-[1fr] md:grid-cols-auto",
-        { "> *": apply("min-w-0") },
-      ),
+      [".grid"]: apply({ display: "grid" }, api.var("gap"), "grid-cols-[1fr] md:grid-cols-auto", {
+        "> *": apply("min-w-0"),
+      }),
     });
   }
 
