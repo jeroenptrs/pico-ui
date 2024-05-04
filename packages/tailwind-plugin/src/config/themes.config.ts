@@ -5,7 +5,7 @@ export const azure = {
 };
 
 export default {
-  backgroundColor: themesObject("white", "[#13171f]"), // mix(${colorsConfig.slate[950]}, ${colorsConfig.slate[900]})
-  color: themesObject("zinc-750", "zinc-200"),
+  backgroundColor: themesObject("white/100", "[#13171f]/100"), // mix(${colorsConfig.slate[950]}, ${colorsConfig.slate[900]})
+  color: themesObject("zinc-750/100", "zinc-200/100"),
   ...azure, // Default Pico theme
 };
