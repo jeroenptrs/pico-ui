@@ -22,8 +22,8 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
           "text-rendering": "optimizeLegibility",
           "tab-size": "4",
         },
-        ...api.vars("theme.backgroundColor", "theme.color"),
         ...api.vars("fontWeight", "fontSize", "lineHeight", "fontFamily", "textUnderlineOffset"),
+        ...api.vars("theme.backgroundColor", "theme.color"),
       ),
     });
   }
@@ -43,7 +43,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
   if (safeGetOption("layout.container")) {
     api.addComponents({
-      [".container, .container-fluid"]: apply(`w-full mx-auto px-[${api.helper("spacing")}]`),
+      [".container-fluid"]: apply(`w-full mx-auto px-[${api.helper("spacing")}]`),
     });
 
     const breakpoints: Array<[string, string]> = Object.entries(api.theme("screens"));
@@ -55,7 +55,11 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
     );
 
     api.addComponents({
-      [".container"]: apply(`${mappedViewports.join(" ")} ${firstBreakpoint}`),
+      [".container"]: apply(
+        `w-full mx-auto px-[${api.helper("spacing")}] ${mappedViewports.join(
+          " ",
+        )} ${firstBreakpoint}`,
+      ),
     });
   }
 

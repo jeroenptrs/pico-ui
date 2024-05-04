@@ -1,7 +1,5 @@
 import { PluginAPI } from "tailwindcss/types/config";
 
-// TODO: https://tailwindcss.com/docs/dark-mode#using-multiple-selectors
-
 export const helpers = {
   spacing({ theme }: PluginAPI) {
     return theme("spacing.4") as string;
@@ -23,7 +21,7 @@ const vars = {
   fontFamily: "font-sans",
   lineHeight: "leading-6",
   fontWeight: "font-normal",
-  fontSize: "text-full",
+  fontSize: { fontSize: "100%" },
   textUnderlineOffset: "underline-offset-0-1",
   borderRadius: "rounded",
   borderWidth: {
