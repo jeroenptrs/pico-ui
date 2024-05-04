@@ -79,6 +79,22 @@ export function layoutPlugin(
   // if (safeGetOption("responsiveSpacings")) {
   //   api.addBase({})
   // }
+
+  // TODO: move to components/progress
+  // #{$parent-selector} progress {
+  //   accent-color: var(#{$css-var-prefix}primary);
+  // }
+
+  // TODO: move to forms/checkbox-radio-switch
+  // #{$parent-selector} [type="checkbox"],
+  // #{$parent-selector} [type="radio"] {
+  //   accent-color: var(#{$css-var-prefix}primary);
+  // }
+
+  // TODO: move to forms/basics
+  // #{$parent-selector} [type="range"] {
+  //   accent-color: var(#{$css-var-prefix}primary);
+  // }
 }
 
 export function layoutConfig(safeGetOption: SafeGetOption): Partial<Config> {

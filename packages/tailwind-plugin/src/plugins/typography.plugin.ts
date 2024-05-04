@@ -3,17 +3,28 @@ import type { PluginAPI } from "tailwindcss/types/config";
 
 import type { SafeGetOption } from "@utils/safeGetOptions.util";
 import { getMinWidthMediaQueries } from "@utils/getMinWidthMediaQueries.util";
+import { apply } from "@utils/apply.util";
 
 // TODO: reuse this for content/typography
 
-export function typographyPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
+export function typographyPlugin(
+  { addBase, theme, pico }: PluginAPI,
+  safeGetOption: SafeGetOption,
+) {
+  // Selection
+  if (safeGetOption("content.typography")) {
+    addBase({
+      "::selection": apply(pico.theme("bg", "textSelectionColor")),
+    });
+  }
+
   // Responsive root font size
   if (safeGetOption("responsiveTypography")) {
-    const mediaQueries = getMinWidthMediaQueries(api.theme);
+    const mediaQueries = getMinWidthMediaQueries(theme);
     for (const [name, mq] of mediaQueries) {
-      const rootFontSize = api.theme("rootFontSize")?.[name];
+      const rootFontSize = theme("rootFontSize")?.[name];
       if (!!rootFontSize)
-        api.addBase({
+        addBase({
           [mq]: {
             "html, :host": {
               "font-size": rootFontSize,
