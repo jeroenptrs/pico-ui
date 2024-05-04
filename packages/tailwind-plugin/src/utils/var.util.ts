@@ -10,5 +10,9 @@ export function createVarFn(api: PluginAPI) {
     return api.theme(`vars.${name}`);
   };
 
+  api.vars = function (...names: Array<string>): Array<CSSRuleObject> {
+    return names.map(api.var);
+  };
+
   return api;
 }

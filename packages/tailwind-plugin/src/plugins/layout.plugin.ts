@@ -22,13 +22,8 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
           "text-rendering": "optimizeLegibility",
           "tab-size": "4",
         },
-        api.var("theme.backgroundColor"),
-        api.var("theme.color"),
-        api.var("fontWeight"),
-        api.var("fontSize"),
-        api.var("lineHeight"),
-        api.var("fontFamily"),
-        api.var("textUnderlineOffset"),
+        ...api.vars("theme.backgroundColor", "theme.color"),
+        ...api.vars("fontWeight", "fontSize", "lineHeight", "fontFamily", "textUnderlineOffset"),
       ),
     });
   }
@@ -48,10 +43,7 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
 
   if (safeGetOption("layout.container")) {
     api.addComponents({
-      [".container, .container-fluid"]: apply(
-        "w-full mx-auto", // https://github.com/tailwindlabs/tailwindcss/discussions/2049#discussioncomment-39950,
-        `px-[${api.helper("spacing")}]`,
-      ),
+      [".container, .container-fluid"]: apply(`w-full mx-auto px-[${api.helper("spacing")}]`),
     });
 
     const breakpoints: Array<[string, string]> = Object.entries(api.theme("screens"));
@@ -77,12 +69,9 @@ export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
     api.addComponents({
       [safeGetOption("layout.grid") === "pico" ? ".pico-grid" : ".grid"]: apply(
         { display: "grid" },
-        "grid-cols-[1fr]",
-        "md:grid-cols-auto",
         api.var("gap"),
-        {
-          "> *": apply("min-w-0"),
-        },
+        "grid-cols-[1fr] md:grid-cols-auto",
+        { "> *": apply("min-w-0") },
       ),
     });
   }
