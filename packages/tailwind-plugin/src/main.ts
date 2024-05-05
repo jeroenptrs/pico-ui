@@ -14,6 +14,7 @@ import { config } from "@config/main.config";
 import { layoutConfig, layoutPlugin } from "@plugins/layout.plugin";
 import { typographyConfig, typographyPlugin } from "@plugins/typography.plugin";
 import { linkConfig, linkPlugin } from "@plugins/link.plugin";
+import { contentConfig, contentPlugin } from "@plugins/content.plugin";
 
 // TODO - FUTURE: move away from omitting TW defaults
 export default plugin.withOptions(
@@ -23,6 +24,7 @@ export default plugin.withOptions(
         layoutPlugin,
         linkPlugin,
         typographyPlugin,
+        contentPlugin,
       )(createVarUtils(api), useSafeGetOption(merge({}, defaultOptions, options)));
     },
   (options: PicoPluginOptions = {}) => {
@@ -33,6 +35,7 @@ export default plugin.withOptions(
       layoutConfig(useSafeGetOption(configOptions)),
       linkConfig(useSafeGetOption(configOptions)),
       typographyConfig(useSafeGetOption(configOptions)),
+      contentConfig(useSafeGetOption(configOptions)),
     );
   },
 );

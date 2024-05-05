@@ -29,8 +29,14 @@ export interface PicoPluginOptions {
   content?:
     | boolean
     | Partial<{
-        link: boolean; // TODO
-        typography: boolean; // TODO
+        link: boolean;
+        typography: boolean;
+        embedded: boolean;
+        button: boolean;
+        table: boolean;
+        code: boolean;
+        figure: boolean;
+        miscs: boolean;
       }>;
 }
 
