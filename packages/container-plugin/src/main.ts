@@ -64,4 +64,11 @@ export const picoUiContainers = {
   screens: { sm: "576px" },
 } as Record<string, unknown>;
 
+export const resetContainers = {
+  container: {
+    center: false,
+    screens: { DEFAULT: {} },
+  } satisfies ContainerTheme,
+};
+
 export type { ContainerTheme } from "./types";
