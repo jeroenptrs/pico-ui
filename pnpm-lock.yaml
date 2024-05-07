@@ -13,9 +13,6 @@ importers:
       lodash.merge:
         specifier: ^4.6.2
         version: 4.6.2
-      tailwind-merge:
-        specifier: ^2.3.0
-        version: 2.3.0
     devDependencies:
       '@types/lodash.merge':
         specifier: ^4.6.9
@@ -48,6 +45,9 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
     devDependencies:
+      '@pico-ui/container-plugin':
+        specifier: workspace:^
+        version: link:../container-plugin
       '@pico-ui/tailwind-plugin':
         specifier: workspace:^
         version: link:../tailwind-plugin
@@ -99,9 +99,18 @@ importers:
 
   packages/tailwind-plugin:
     dependencies:
+      '@pico-ui/container-plugin':
+        specifier: workspace:^
+        version: link:../container-plugin
       lodash.merge:
         specifier: ^4.6.2
         version: 4.6.2
+      postcss-combine-duplicated-selectors:
+        specifier: '>=10.0.0'
+        version: 10.0.3(postcss@8.4.38)
+      postcss-combine-media-query:
+        specifier: '>=1.0.0'
+        version: 1.0.1
       tailwind-merge:
         specifier: ^2.3.0
         version: 2.3.0

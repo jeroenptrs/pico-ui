@@ -6,6 +6,9 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [tsconfigPaths(), dts({ rollupTypes: true })],
   build: {
+    rollupOptions: {
+      external: ["tailwindcss/plugin", "tailwindcss/lib/util/normalizeScreens", "lodash.merge"],
+    },
     lib: {
       entry: [resolve(__dirname, "src/main.ts")],
       formats: ["es", "cjs"],

@@ -53,7 +53,6 @@ export default plugin(
 export const picoUiContainers = {
   container: {
     screens: {
-      DEFAULT: {},
       sm: { maxWidth: 510, padding: 0 },
       md: { maxWidth: 700 },
       lg: { maxWidth: 950 },

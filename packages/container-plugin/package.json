@@ -22,7 +22,6 @@
     "vite-tsconfig-paths": "^4.3.2"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.2",
-    "tailwind-merge": "^2.3.0"
+    "lodash.merge": "^4.6.2"
   }
 }

@@ -1,13 +1,14 @@
+import container, { picoUiContainers } from "@pico-ui/container-plugin";
+import merge from "lodash.merge";
 import type { Config } from "tailwindcss";
 import type { PluginAPI } from "tailwindcss/types/config";
 
 import { apply } from "@utils/apply.util";
 import type { SafeGetOption } from "@utils/safeGetOptions.util";
 
-export function layoutPlugin(
-  { addBase, addComponents, theme, pico }: PluginAPI,
-  safeGetOption: SafeGetOption,
-) {
+export function layoutPlugin(api: PluginAPI, safeGetOption: SafeGetOption) {
+  const { addBase, addComponents, pico } = api;
+
   if (safeGetOption("layout.document")) {
     addBase({
       "*, *:before, *:after": apply("box-border", "bg-no-repeat"),
@@ -46,18 +47,10 @@ export function layoutPlugin(
   }
 
   if (safeGetOption("layout.container")) {
+    container.handler(api);
+
     addComponents({
       [".container-fluid"]: apply(`w-full mx-auto px-[${pico.helper("spacing")}]`),
-    });
-
-    const breakpoints: Array<[string, string]> = Object.entries(theme("container.maxWidth"));
-    addComponents({
-      [".container"]: apply(
-        `w-full mx-auto px-[${pico.helper("spacing")}]`,
-        ...breakpoints.map(([screen, maxWidth], index) => ({
-          [`@screen ${screen}`]: apply(`max-w-[${maxWidth}]`, index === 0 && "px-0"), // https://github.com/tailwindlabs/tailwindcss/issues/1102#issuecomment-525386822
-        })),
-      ),
     });
   }
 
@@ -99,26 +92,6 @@ export function layoutPlugin(
 
 export function layoutConfig(safeGetOption: SafeGetOption): Partial<Config> {
   return safeGetOption("layout.container")
-    ? {
-        theme: {
-          container: {
-            maxWidth: {
-              sm: "510px",
-              md: "700px",
-              lg: "950px",
-              xl: "1200px",
-              "2xl": "1450px",
-            },
-          } as Record<string, unknown>,
-          extend: {
-            screens: {
-              sm: "576px",
-            },
-          },
-        },
-        corePlugins: {
-          container: false,
-        },
-      }
+    ? merge({}, container.config, { theme: { extend: picoUiContainers } })
     : {};
 }
