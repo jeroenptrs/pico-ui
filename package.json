@@ -5,6 +5,7 @@
   "scripts": {
     "test": "pnpm --filter='*' test",
     "container": "pnpm --filter=@pico-ui/container-plugin",
+    "container:publish": "pnpm container publish --no-git-checks --access public --otp",
     "plugin": "pnpm --filter=@pico-ui/tailwind-plugin"
   },
   "author": "Jeroen Peeters",
