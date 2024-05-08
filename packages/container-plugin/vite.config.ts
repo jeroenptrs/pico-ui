@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { resolve } from "node:path";
 import { defineConfig, UserConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -13,6 +14,11 @@ export default defineConfig({
       entry: [resolve(__dirname, "src/main.ts")],
       formats: ["es", "cjs"],
       fileName: (format, name) => (format === "cjs" ? `${name}.cjs` : `${name}.js`),
+    },
+  },
+  test: {
+    coverage: {
+      exclude: ["**/testing.ts"],
     },
   },
 }) satisfies UserConfig;

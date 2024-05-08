@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "pnpm --filter='*' test",
     "container": "pnpm --filter=@pico-ui/container-plugin",
     "plugin": "pnpm --filter=@pico-ui/tailwind-plugin"
   },

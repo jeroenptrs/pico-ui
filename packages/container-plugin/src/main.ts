@@ -22,9 +22,12 @@ export default plugin(
         );
       }
 
-      screenRules.push({
-        [`@screen ${screenName}`]: getScreenRules(config),
-      });
+      const screenConfig = getScreenRules(config);
+      if (JSON.stringify(screenConfig) !== "{}") {
+        screenRules.push({
+          [`@screen ${screenName}`]: screenConfig,
+        });
+      }
     }
 
     const defaultConfig = theme("container.screens.DEFAULT", {

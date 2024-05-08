@@ -1,0 +1,19 @@
+{
+  "name": "@pico-ui/testing-utils",
+  "version": "0.0.0",
+  "main": "main.ts",
+  "type": "module",
+  "scripts": {},
+  "dependencies": {
+    "lodash.merge": "^4.6.2",
+    "postcss": "^8.4.38",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "^4.6.9",
+    "@types/node": "^20.12.7"
+  }
+}

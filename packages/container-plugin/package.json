@@ -8,14 +8,14 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "tsc && vite build",
-    "test": "vitest",
-    "test:ui": "vitest --ui --coverage.enabled=true",
-    "coverage": "vitest run --coverage"
+    "test": "vitest run --coverage",
+    "test:ui": "vitest --ui --coverage.enabled=true"
   },
   "peerDependencies": {
     "tailwindcss": ">=3.0.0 || insiders"
   },
   "devDependencies": {
+    "@pico-ui/testing-utils": "workspace:^",
     "@types/lodash.merge": "^4.6.9",
     "@types/node": "^20.12.7",
     "@vitest/coverage-v8": "^1.6.0",
