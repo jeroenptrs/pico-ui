@@ -5,6 +5,24 @@
   "module": "dist/main.js",
   "types": "dist/main.d.ts",
   "type": "module",
+  "keywords": [
+    "tailwind",
+    "pico",
+    "picocss",
+    "tailwindcss",
+    "css",
+    "container"
+  ],
+  "files": [
+    "src/*",
+    "dist/*",
+    ".gitignore",
+    "tsconfig.json",
+    "*.ts",
+    "*.d.ts",
+    "*.css",
+    "*.js"
+  ],
   "scripts": {
     "dev": "vite build --watch",
     "build": "tsc && vite build",

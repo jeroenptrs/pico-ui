@@ -1,4 +1,4 @@
-# 💖 @pico-ui/container-plugin
+# 💖 @pico-ui/container-plugin 💖
 
 > *A [TailwindCSS](https://tailwindcss.com) plugin reimplementing `.container` with configurable `maxWidth`*
 
