@@ -2,7 +2,8 @@
 
 > *A [TailwindCSS](https://tailwindcss.com) plugin reimplementing `.container` with configurable `maxWidth`*
 
-![NPM Version](https://img.shields.io/npm/v/%40pico-ui%2Fcontainer-plugin?style=flat&color=ffd7e5)
+![NPM Version](https://img.shields.io/npm/v/%40pico-ui%2Fcontainer-plugin?style=flat&color=ffd7e5) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/jeroenptrs/pico-ui/unit-tests.yml)
+
 
 ---
 
