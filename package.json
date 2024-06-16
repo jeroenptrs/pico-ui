@@ -4,13 +4,17 @@
   "private": true,
   "scripts": {
     "test": "pnpm --filter='*' test",
+    "colors": "pnpm --filter=@pico-ui/colors",
+    "colors:publish": "pnpm colors publish --no-git-checks --access public --otp",
     "container": "pnpm --filter=@pico-ui/container-plugin",
     "container:publish": "pnpm container publish --no-git-checks --access public --otp",
     "plugin": "pnpm --filter=@pico-ui/tailwind-plugin"
   },
   "author": "Jeroen Peeters",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "@changesets/cli": "^2.27.5"
+  },
   "engines": {
     "node": ">=18.19.0"
   }

@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@pico-ui/colors": "1.0.0-beta.0",
+    "@pico-ui/container-plugin": "1.0.0-beta.1",
+    "@pico-ui/tailwind-plugin": "0.0.0",
+    "@pico-ui/testing-utils": "0.0.0"
+  },
+  "changesets": [
+    "pink-pugs-raise"
+  ]
+}
