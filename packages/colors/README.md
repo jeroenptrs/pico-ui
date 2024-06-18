@@ -23,6 +23,8 @@ npm i -D tailwindcss @pico-ui/colors
 yarn add -D tailwindcss @pico-ui/colors
 ```
 
+## Usage
+
 Add the `colors` property to the theme field of your `tailwind.config` file. The following example is in Typescript:
 
 ```typescript
@@ -38,3 +40,16 @@ export default {
 ```
 
 Worthy of note is that the goal of this package is to replace the existing Tailwind colors. If you only need a couple, feel free to pick and choose!
+
+### Mix
+
+To mix hex colors, you can import the util function `mix`. Note that right now, these must be strings that consist of the "#" symbol followed by 6 hex characters (and the value will also be returned as such).
+
+We'll note a TODO to support more formats.
+
+```typescript
+import colors from "@pico-ui/colors";
+import { mix } from "@pico-ui/colors/lib/mix";
+
+const myMixedColor = mix(colors.slate[950], colors.slate[900]);
+```

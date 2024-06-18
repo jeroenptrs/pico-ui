@@ -1,4 +1,4 @@
-import { mix } from "@utils/mix.util";
+import { mix } from "@pico-ui/colors/lib/mix";
 import { themesObject } from "@utils/themes.util";
 import colorsConfig from "./colors.config";
 

@@ -8,6 +8,7 @@
     "@pico-ui/testing-utils": "0.0.0"
   },
   "changesets": [
-    "pink-pugs-raise"
+    "pink-pugs-raise",
+    "twelve-adults-wonder"
   ]
 }

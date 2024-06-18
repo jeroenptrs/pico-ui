@@ -1,9 +1,9 @@
 {
   "name": "@pico-ui/colors",
-  "version": "1.0.0-beta.1",
-  "main": "dist/main.cjs",
-  "module": "dist/main.js",
-  "types": "dist/main.d.ts",
+  "version": "1.0.0-beta.2",
+  "main": "lib/main.cjs",
+  "module": "lib/main.js",
+  "types": "lib/main.d.ts",
   "type": "module",
   "keywords": [
     "tailwind",
@@ -16,7 +16,7 @@
   ],
   "files": [
     "src/*",
-    "dist/*",
+    "lib/*",
     ".gitignore",
     "tsconfig.json",
     "*.ts",
